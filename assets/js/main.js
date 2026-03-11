@@ -88,15 +88,79 @@ function renderNews() {
 
 function renderResearch() {
   document.getElementById('research-sections').innerHTML =
-    window.ACES_THEMES.map(theme => `
-      <section class="research" id="${theme.id}">
-        <div class="wrap">
-          <h2><span>${theme.emoji}</span> ${theme.title}</h2>
-          <p class="desc">${theme.desc}</p>
-          <div class="pgrid">${theme.papers.map(paperCard).join('')}</div>
-        </div>
-      </section>`
+    window.ACES_THEMES.map(theme => {
+      const preview = theme.papers.slice(0, 3).map(paperCard).join('');
+      const remaining = theme.papers.length - 3;
+      const seeAllTile = `
+        <a class="pcard pcard-seemore" href="research.html#${theme.id}">
+          <div class="pthumb seemore-thumb" style="background:${theme.color}">
+            <div class="seemore-count">+${remaining}</div>
+            <div class="seemore-label">more papers</div>
+          </div>
+          <div class="pbody">
+            <div class="ptitle seemore-title">See All ${theme.papers.length} Papers</div>
+            <div class="psub">View the complete ${theme.navLabel} publication list →</div>
+            <div class="pdivider"><i></i><i></i><i></i><i></i></div>
+            <div class="pbadges"><span class="badge-venue">${theme.navLabel}</span></div>
+          </div>
+        </a>`;
+      return `
+        <section class="research" id="${theme.id}">
+          <div class="wrap">
+            <h2><span>${theme.emoji}</span> ${theme.title}</h2>
+            <p class="desc">${theme.desc}</p>
+            <div class="pgrid">${preview}${remaining > 0 ? seeAllTile : ''}</div>
+          </div>
+        </section>`;
+    }).join('');
+}
+
+// ── Research full page renderer ─────────────────────────────
+function renderResearchPage() {
+  const container = document.getElementById('research-page');
+  if (!container) return;
+
+  // Inject nav theme links
+  const navEl = document.getElementById('nav-themes');
+  if (navEl) {
+    navEl.innerHTML = window.ACES_THEMES.map(t =>
+      `<a href="research.html#${t.id}">${t.navLabel}</a>`
     ).join('');
+  }
+
+  // Read theme from URL hash
+  const hash = window.location.hash.slice(1);
+  const theme = window.ACES_THEMES.find(t => t.id === hash) || window.ACES_THEMES[0];
+
+  // Build sidebar nav
+  const sidebar = window.ACES_THEMES.map(t => `
+    <a class="theme-nav-item${t.id === theme.id ? ' active' : ''}" href="research.html#${t.id}">
+      <span class="theme-dot" style="background:${t.color}"></span>
+      <span>${t.emoji} ${t.navLabel}</span>
+      <span class="theme-count">${t.papers.length}</span>
+    </a>`).join('');
+
+  container.innerHTML = `
+    <div class="rpage-layout">
+      <aside class="rpage-sidebar">
+        <div class="rpage-sidebar-title">Research Themes</div>
+        ${sidebar}
+        <a class="rpage-back" href="index.html">← Back to Home</a>
+      </aside>
+      <main class="rpage-main">
+        <div class="rpage-header" style="border-left:4px solid ${theme.color}">
+          <div class="rpage-emoji">${theme.emoji}</div>
+          <div>
+            <h1>${theme.title}</h1>
+            <p>${theme.desc}</p>
+          </div>
+        </div>
+        <div class="pgrid rpage-grid">${theme.papers.map(paperCard).join('')}</div>
+      </main>
+    </div>`;
+
+  // Re-run if hash changes (sidebar links)
+  window.addEventListener('hashchange', renderResearchPage);
 }
 
 function renderTeamFull() {
@@ -163,6 +227,13 @@ function initMobileNav() {
 
 // ── Boot ────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  // Research full page (research.html)
+  if (document.getElementById('research-page')) {
+    renderResearchPage();
+    initMobileNav();
+    return;
+  }
+  // Home page (index.html)
   renderStats();
   renderNav();
   renderTeamStrip();
