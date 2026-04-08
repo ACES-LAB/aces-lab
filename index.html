@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="ACES Laboratory — Advanced Computational Electricity Systems at Georgia Tech. AI, PV integration, grid cybersecurity, prosumer architectures, and optimization."/>
   <title>ACES Lab @ Georgia Tech</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -12,12 +11,10 @@
 </head>
 <body>
 
-<!-- ══════════════════════ NAVBAR ══════════════════════════ -->
 <nav id="navbar">
   <a class="nav-brand" href="#page-top">ACES Lab</a>
   <button id="nav-toggle">☰</button>
   <div id="all-nav-links">
-    <!-- Research theme links — injected from data.js -->
     <span id="nav-themes" style="display:contents"></span>
     <span class="nav-static" style="display:contents">
       <a href="#team">Members</a>
@@ -33,8 +30,7 @@
   </div>
 </nav>
 
-
-<!-- ══════════════════════ HERO ════════════════════════════ -->
+<!-- HERO -->
 <section id="page-top">
   <div class="wrap">
     <div class="hero-logo">
@@ -50,27 +46,20 @@
       At <a href="https://gatech.edu" target="_blank">Georgia Tech</a>, the
       <strong>Advanced Computational Electricity Systems (ACES) Laboratory</strong>
       develops transformational research at the intersection of electricity grids,
-      machine learning, and cyber-physical systems. Our work spans
-      <a href="#research-ai">AI &amp; data-driven grid methods</a>,
-      <a href="#research-pv">solar PV &amp; distributed energy integration</a>,
-      <a href="#research-prosumers">decentralized prosumer architectures</a>,
-      <a href="#research-cyber">grid cybersecurity</a>, and
-      <a href="#research-opt">power systems optimization &amp; markets</a>.
-      Led by <a href="http://faculty.ece.gatech.edu/santiago.grijalva" target="_blank">Prof. Santiago Grijalva</a>,
+      machine learning, and cyber-physical systems —
+      led by <a href="http://faculty.ece.gatech.edu/santiago.grijalva" target="_blank">Prof. Santiago Grijalva</a>,
       Southern Company Distinguished Professor of ECE.
     </p>
   </div>
 </section>
 
-
-<!-- ══════════════════════ TEAM STRIP ══════════════════════ -->
+<!-- TEAM STRIP -->
 <div class="team-strip">
   <div class="strip-label">Current ACES Lab Members — <a href="#team">See full team ›</a></div>
   <div class="strip-grid" id="team-strip"></div>
 </div>
 
-
-<!-- ══════════════════════ NEWS ════════════════════════════ -->
+<!-- NEWS -->
 <section id="news">
   <div class="wrap">
     <div id="news-list"></div>
@@ -78,71 +67,51 @@
   </div>
 </section>
 
+<!-- 4 RESEARCH AREA TILES -->
+<section id="research-areas">
+  <div class="wrap">
+    <h2>Research Areas</h2>
+    <p class="section-sub">Four interconnected focus areas spanning the modern electricity grid.</p>
+    <div class="area-tiles" id="area-tiles"></div>
+  </div>
+</section>
 
-<!-- ══════════════════════ RESEARCH SECTIONS ═══════════════ -->
-<!-- All 5 themes injected here by main.js from data.js -->
+<!-- 5 RESEARCH THEME PREVIEWS (3 papers + see-all) -->
 <div id="research-sections"></div>
 
-
-<!-- ══════════════════════ FULL TEAM ═══════════════════════ -->
+<!-- FULL TEAM -->
 <section id="team">
   <div class="wrap">
     <h2 class="team-h2">Lab Members</h2>
     <p class="team-sub"><a href="https://aces.ece.gatech.edu" target="_blank">See complete alumni list at the ACES website →</a></p>
     <div id="team-cards"></div>
-
     <div class="tgroup-label" style="margin-top:28px">Alumni</div>
     <div style="overflow-x:auto">
-      <table class="alumni-tbl">
-        <tbody id="alumni-list"></tbody>
-      </table>
+      <table class="alumni-tbl"><tbody id="alumni-list"></tbody></table>
     </div>
-
     <div class="join-box">
       <h3>Join ACES Lab</h3>
-      <p>We welcome talented, motivated graduate students and postdocs interested in power systems, AI, cybersecurity, and energy. If you're excited about transforming the electricity grid, we'd love to hear from you.</p>
+      <p>We welcome talented graduate students and postdocs interested in power systems, AI, cybersecurity, and energy. If you're excited about transforming the electricity grid, we'd love to hear from you.</p>
       <a class="btn-navy" href="https://aces.ece.gatech.edu/aces-areas-of-interest-for-prospective-graduate-students/" target="_blank">Prospective Students →</a>
     </div>
   </div>
 </section>
 
-
-<!-- ══════════════════════ COURSES ═════════════════════════ -->
+<!-- COURSES -->
 <section id="courses">
   <div class="wrap">
     <h2>Courses</h2>
     <div class="cgrid">
-      <div class="ccard">
-        <div class="ccode">ECE 4320 · Undergraduate</div>
-        <div class="cname">Power System Analysis and Control</div>
-        <div class="cdesc">Modeling, load flow, fault analysis, and control fundamentals for power engineers.</div>
-      </div>
-      <div class="ccard">
-        <div class="ccode">ECE 4321 · Undergraduate</div>
-        <div class="cname">Power System Engineering</div>
-        <div class="cdesc">Advanced power engineering, protection, relay design, and reliability concepts.</div>
-      </div>
-      <div class="ccard">
-        <div class="ccode">ECE 6320 · Graduate</div>
-        <div class="cname">Power System Operation and Control</div>
-        <div class="cdesc">Real-time grid operations, EMS, state estimation, and advanced control algorithms.</div>
-      </div>
-      <div class="ccard">
-        <div class="ccode">ECE 6337 · Graduate</div>
-        <div class="cname">Power System Economics &amp; Electricity Markets</div>
-        <div class="cdesc">Electricity market design, LMPs, deregulation, and market mechanism design.</div>
-      </div>
-      <div class="ccard">
-        <div class="ccode">ECE 8813 · Graduate</div>
-        <div class="cname">Smart Electricity Grids</div>
-        <div class="cdesc">Smart grid technologies, DERs, microgrids, and cyber-physical systems.</div>
-      </div>
+      <div class="ccard"><div class="ccode">ECE 4320 · Undergraduate</div><div class="cname">Power System Analysis and Control</div><div class="cdesc">Modeling, load flow, fault analysis, and control fundamentals for power engineers.</div></div>
+      <div class="ccard"><div class="ccode">ECE 4321 · Undergraduate</div><div class="cname">Power System Engineering</div><div class="cdesc">Advanced power engineering, protection, relay design, and reliability concepts.</div></div>
+      <div class="ccard"><div class="ccode">ECE 6320 · Graduate</div><div class="cname">Power System Operation and Control</div><div class="cdesc">Real-time grid operations, EMS, state estimation, and advanced control.</div></div>
+      <div class="ccard"><div class="ccode">ECE 6337 · Graduate</div><div class="cname">Power System Economics &amp; Electricity Markets</div><div class="cdesc">Market design, LMPs, deregulation, and market mechanism design.</div></div>
+      <div class="ccard"><div class="ccode">ECE 8813 · Graduate</div><div class="cname">Smart Electricity Grids</div><div class="cdesc">Smart grid technologies, DERs, microgrids, and cyber-physical systems.</div></div>
     </div>
   </div>
 </section>
 
-
-<!-- ══════════════════════ SPONSORS ════════════════════════ -->
+<!-- SPONSORS -->
 <section id="sponsors">
   <div class="wrap">
     <h2>Research Sponsors</h2>
@@ -151,8 +120,7 @@
   </div>
 </section>
 
-
-<!-- ══════════════════════ FOOTER ══════════════════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="fgrid">
@@ -160,17 +128,16 @@
         <h5>ACES Lab</h5>
         <p>Advanced Computational Electricity Systems Laboratory</p>
         <p>School of Electrical &amp; Computer Engineering</p>
-        <p>Georgia Institute of Technology</p>
-        <p>North Avenue, Atlanta, GA 30332</p>
+        <p>Georgia Institute of Technology · Atlanta, GA 30332</p>
         <a href="mailto:santiago.grijalva@ece.gatech.edu">santiago.grijalva@ece.gatech.edu</a>
       </div>
       <div>
         <h5>Research</h5>
-        <a href="#research-ai">AI &amp; Machine Learning for Grids</a>
-        <a href="#research-pv">Solar PV Integration &amp; DERs</a>
-        <a href="#research-prosumers">Prosumers &amp; Microgrids</a>
-        <a href="#research-cyber">Grid Cybersecurity</a>
-        <a href="#research-opt">Optimization &amp; Markets</a>
+        <a href="area.html#grid-intelligence">Grid Intelligence &amp; AI</a>
+        <a href="area.html#renewable-energy">Renewable Energy &amp; DERs</a>
+        <a href="area.html#prosumers-markets">Prosumers &amp; Microgrids</a>
+        <a href="area.html#grid-security">Grid Cybersecurity</a>
+        <a href="research.html">All Publications</a>
       </div>
       <div>
         <h5>Links</h5>
@@ -178,21 +145,24 @@
         <a href="http://faculty.ece.gatech.edu/santiago.grijalva" target="_blank">Prof. Grijalva Profile</a>
         <a href="https://ece.gatech.edu" target="_blank">ECE @ Georgia Tech</a>
         <a href="https://scholar.google.com/citations?user=MK-6O2oAAAAJ" target="_blank">Google Scholar</a>
-        <a href="#">GitHub</a>
       </div>
     </div>
     <hr class="fhr"/>
     <div class="fbot">
       <div class="fbrand">⚡ ACES Lab</div>
       <div>© 2025 Georgia Institute of Technology · ACES Laboratory</div>
-      <div>Built with ♥ in Atlanta, GA 30332</div>
     </div>
   </div>
 </footer>
 
-<!-- Data first, then renderer -->
-<script src="assets/js/data.js"></script>
+<!-- Load data files first, then renderer -->
+<script src="data/stats.js"></script>
+<script src="data/news.js"></script>
+<script src="data/team.js"></script>
+<script src="data/sponsors.js"></script>
+<script src="data/themes.js"></script>
+<script src="data/papers.js"></script>
+<script src="data/areas.js"></script>
 <script src="assets/js/main.js"></script>
-
 </body>
 </html>

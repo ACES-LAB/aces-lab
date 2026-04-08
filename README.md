@@ -1,7 +1,13 @@
 # ACES Lab Website
 
-**Advanced Computational Electricity Systems Laboratory**  
+**Advanced Computational Electricity Systems Laboratory**
 Georgia Institute of Technology · School of ECE
+
+---
+
+## How to Open the Website
+
+Just **double-click `index.html`** — it opens in any browser, no setup needed.
 
 ---
 
@@ -10,107 +16,128 @@ Georgia Institute of Technology · School of ECE
 ```
 aces-lab/
 │
-├── index.html                  ← Page shell (rarely needs editing)
+├── index.html          ← Homepage (rarely needs editing)
+├── research.html       ← Full publications list by theme
+├── area.html           ← Deep-dive on each of the 4 research areas
+│
+├── data/               ← ✏️  EDIT THESE FILES to update content
+│   ├── papers.js       ← All ~65+ research papers (add new ones here)
+│   ├── themes.js       ← The 5 publication theme names/descriptions
+│   ├── areas.js        ← The 4 main research area descriptions
+│   ├── team.js         ← Current members + alumni
+│   ├── news.js         ← News items (newest first)
+│   ├── stats.js        ← The numbers in the hero (250+ publications, etc.)
+│   └── sponsors.js     ← Research sponsors
 │
 ├── assets/
-│   ├── css/
-│   │   └── style.css           ← All styles
-│   ├── js/
-│   │   ├── data.js             ← ✏️  EDIT THIS to update content
-│   │   └── main.js             ← Renders the page from data.js
+│   ├── css/style.css   ← All visual styling (colors, layout)
+│   ├── js/main.js      ← Page renderer — don't edit this
 │   └── img/
-│       ├── team/               ← Drop member photos here (60×60px+, square)
-│       ├── papers/             ← Drop paper thumbnails here
-│       └── sponsors/           ← Drop sponsor logos here (transparent PNG)
+│       ├── team/       ← Drop member photos here (e.g. grijalva.jpg)
+│       ├── papers/     ← Paper thumbnail images (optional)
+│       └── sponsors/   ← Sponsor logo images
 │
-└── README.md
+└── README.md           ← This file
 ```
 
 ---
 
-## How to Open
+## The Data Folder — What to Edit
 
-Just **double-click `index.html`** in any browser. No server needed.
+Open any file in the `data/` folder with a plain text editor (TextEdit on Mac,
+Notepad on Windows, or VS Code). Each file has comments at the top explaining
+exactly what to change.
 
 ---
 
-## How to Update Content
+### ➕ Add a New Paper (`data/papers.js`)
 
-**Everything lives in `assets/js/data.js`.**  
-Open it in any text editor (VS Code, Notepad++, etc.) and follow the comments.
+Find the right theme section (THEME_AI, THEME_PV, THEME_PROSUMERS,
+THEME_CYBER, or THEME_OPT) and paste a new entry:
 
-### Add a paper
-Find the right theme in `window.ACES_THEMES`, add an object to its `papers` array:
 ```js
 {
-  thumbColor: '#003057',       // Background color of the placeholder tile
-  thumbLabel: 'Short\nLabel', // Text shown on tile (use \n for line break)
-  title:  'Paper Title',
-  sub:    'One-sentence description of the contribution.',
-  url:    'https://doi.org/...',   // Link to PDF or DOI — use '#' if not ready
-  tags:   ['IEEE Trans. Power Systems 2025'],
-  awards: ['Best Paper'],      // Optional — shows yellow badge
-  authors: 'Author A, Grijalva',
-}
-```
-
-### Add a team member
-Add to `window.ACES_TEAM.current`:
-```js
-{ initials: 'AB', name: 'Alice Brown', role: 'PhD', detail: 'Research topic here',
-  url: 'https://...', photo: 'assets/img/team/alice.jpg' }
-```
-`role` must be exactly: `'Postdoc'`, `'PhD'`, or `'MS'` (controls grouping).
-
-### Add a news item
-Prepend to `window.ACES_NEWS` (newest first):
-```js
-{ date: '2026 Jan', emoji: '🎉', text: 'News text with optional <a href="URL">links</a>.' }
-```
-
-### Add a stat
-Edit `window.ACES_STATS` — any number/label pair.
-
-### Add a sponsor
-Add to `window.ACES_SPONSORS`:
-```js
-{ name: 'Sponsor Name', logo: 'assets/img/sponsors/logo.png', url: 'https://...' }
+  title:   "Full paper title here",
+  authors: "Last A, Last B, Grijalva S",
+  venue:   "IEEE Transactions on Power Systems",
+  year:    2025,
+  url:     "https://doi.org/...",   // paste the DOI link, or use "#" if not ready
+  awards:  [],                      // or ["Best Paper"] to show a badge
+},
 ```
 
 ---
 
-## Adding Photos
+### ➕ Add a News Item (`data/news.js`)
 
-Drop image files into the right folder and reference them in `data.js`:
-- **Team photos** → `assets/img/team/firstname.jpg` (square, 120×120px minimum)
-- **Paper thumbnails** → `assets/img/papers/paper-id.png` (any size)
-- **Sponsor logos** → `assets/img/sponsors/name.png` (transparent PNG, ~150×50px)
+Paste at the **top** of the list (newest first):
 
-If an image is missing or fails to load, the site falls back gracefully (initials for team, colored tile for papers).
+```js
+{ date: "2026 Jan", emoji: "🎉", text: "Your news text here with optional <a href='URL'>links</a>." },
+```
 
 ---
 
-## Deploying to GitHub Pages
+### ➕ Add a Team Member (`data/team.js`)
+
+Add to the `current` array:
+
+```js
+{
+  initials: "AB",
+  name:     "Alice Brown",
+  role:     "PhD",           // must be: "Director", "Postdoc", "PhD", or "MS"
+  detail:   "Research topic here",
+  url:      "#",             // personal website or "#"
+  photo:    "assets/img/team/alice.jpg",  // or "" if no photo yet
+},
+```
+
+Then drop a square photo (at least 120×120 pixels) into `assets/img/team/`.
+
+---
+
+### ➕ Add a Sponsor (`data/sponsors.js`)
+
+```js
+{ name: "Sponsor Name", logo: "assets/img/sponsors/logo.png", url: "https://..." },
+```
+
+Drop the logo image (transparent PNG, ~150×50px) into `assets/img/sponsors/`.
+
+---
+
+### ✏️ Update the Hero Stats (`data/stats.js`)
+
+Just change the numbers:
+
+```js
+{ number: "300+", label: "Publications" },
+```
+
+---
+
+## Deploying to GitHub Pages (Free Hosting)
 
 ```bash
 # 1. Create a public repo named 'aces-lab' on GitHub
-# 2. Push this folder:
+# 2. In Terminal, navigate to this folder and run:
 git init
 git add .
 git commit -m "ACES Lab website"
 git remote add origin https://github.com/YOUR_ORG/aces-lab.git
 git push -u origin main
 
-# 3. Go to: Repo → Settings → Pages → Source: main branch / root → Save
-# Live at: https://YOUR_ORG.github.io/aces-lab/
+# 3. On GitHub: Settings → Pages → Source: main branch → Save
+# Your site will be live at: https://YOUR_ORG.github.io/aces-lab/
 ```
 
 ---
 
-## Colors
+## Colors (for reference)
 
-| Variable  | Value     | Used for               |
-|-----------|-----------|------------------------|
-| `--navy`  | `#003057` | Navbar, headers, cards |
-| `--gold`  | `#EAAA00` | Accents, badges, stats |
-| `--navy2` | `#004a88` | Links, role labels     |
+| Name     | Hex       | Used for                    |
+|----------|-----------|-----------------------------|
+| GT Navy  | `#003057` | Navbar, headings, cards     |
+| GT Gold  | `#EAAA00` | Accents, badges, stats      |
+| Link     | `#004a88` | Clickable links, role text  |
