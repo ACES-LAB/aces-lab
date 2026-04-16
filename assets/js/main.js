@@ -1,17 +1,90 @@
 /* ============================================================
-   ACES Lab — assets/js/main.js
-   Renders pages from data/ files. Don't edit this unless you
-   know JavaScript — all content lives in the data/ folder.
+   ACES Lab — assets/js/main.js (ENHANCED VERSION)
+   Renders pages from data/ files with rich paper metadata
    ============================================================ */
 
-// ── Paper card (research.html) ────────────────────────────────
+// ── Paper card (research.html) — ENHANCED VERSION ─────────────
 function paperCard(p, themeColor) {
-  const color  = themeColor || '#003057';
+  const color = themeColor || '#003057';
   const awards = (p.awards || []).map(a => `<span class="badge-award">★ ${a}</span>`).join('');
-  return `<div class="pcard">
-    <div class="pthumb-bar" style="background:${color}">
-      <span class="pthumb-year">${p.year || ''}</span>
-    </div>
+  
+  // Build action buttons for available resources
+  const actions = [];
+  if (p.pdf && p.pdf !== '#') {
+    actions.push(`<a href="${p.pdf}" target="_blank" class="paper-action" title="PDF">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+      PDF
+    </a>`);
+  }
+  if (p.code) {
+    actions.push(`<a href="${p.code}" target="_blank" class="paper-action" title="Code">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="16 18 22 12 16 6"/>
+        <polyline points="8 6 2 12 8 18"/>
+      </svg>
+      Code
+    </a>`);
+  }
+  if (p.project) {
+    actions.push(`<a href="${p.project}" target="_blank" class="paper-action" title="Project">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+        <line x1="12" y1="22.08" x2="12" y2="12"/>
+      </svg>
+      Project
+    </a>`);
+  }
+  if (p.slides) {
+    actions.push(`<a href="${p.slides}" target="_blank" class="paper-action" title="Slides">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+        <line x1="8" y1="21" x2="16" y2="21"/>
+        <line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>
+      Slides
+    </a>`);
+  }
+  if (p.video) {
+    actions.push(`<a href="${p.video}" target="_blank" class="paper-action" title="Video">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+      Video
+    </a>`);
+  }
+  if (p.doi) {
+    actions.push(`<a href="https://doi.org/${p.doi}" target="_blank" class="paper-action" title="DOI">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+      </svg>
+      DOI
+    </a>`);
+  }
+  
+  const actionsHTML = actions.length > 0 
+    ? `<div class="paper-actions">${actions.join('')}</div>`
+    : '';
+
+  // Build the card with or without image
+  const imageHTML = p.image 
+    ? `<div class="paper-thumb" style="background-color: ${color}">
+         <img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'">
+         <span class="paper-year">${p.year || ''}</span>
+       </div>`
+    : `<div class="pthumb-bar" style="background:${color}">
+         <span class="pthumb-year">${p.year || ''}</span>
+       </div>`;
+
+  return `<div class="pcard ${p.image ? 'pcard-with-image' : ''}">
+    ${imageHTML}
     <div class="pbody">
       <div class="ptitle">${p.title}</div>
       ${awards}
@@ -20,21 +93,27 @@ function paperCard(p, themeColor) {
         <span class="badge-venue">${p.venue}</span>
         ${p.authors ? `<span class="badge-author">${p.authors}</span>` : ''}
       </div>
-      ${p.url && p.url !== '#'
-        ? `<a class="pcard-link" href="${p.url}" target="_blank">View paper →</a>`
-        : ''}
+      ${actionsHTML}
     </div>
   </div>`;
 }
 
 // ── Homepage preview card (3 shown per theme + see-all tile) ──
 function previewCard(p, themeColor) {
-  const color  = themeColor || '#003057';
+  const color = themeColor || '#003057';
   const awards = (p.awards || []).map(a => `<span class="badge-award">★ ${a}</span>`).join('');
-  return `<div class="pcard">
-    <div class="pthumb-bar" style="background:${color}">
-      <span class="pthumb-year">${p.year || ''}</span>
-    </div>
+  
+  const imageHTML = p.image 
+    ? `<div class="paper-thumb-preview" style="background-color: ${color}">
+         <img src="${p.image}" alt="${p.title}" onerror="this.style.display='none'">
+         <span class="paper-year">${p.year || ''}</span>
+       </div>`
+    : `<div class="pthumb-bar" style="background:${color}">
+         <span class="pthumb-year">${p.year || ''}</span>
+       </div>`;
+
+  return `<div class="pcard ${p.image ? 'pcard-with-image' : ''}">
+    ${imageHTML}
     <div class="pbody">
       <div class="ptitle">${p.title}</div>
       ${awards}
