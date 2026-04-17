@@ -60,7 +60,7 @@ window.ACES_PAPERS = {
       venue:   "IEEE Transactions on Smart Grid",
       year:    2019,
       image:   "assets/images/papers/dnn-pv.jpg",
-      pdf:     "https://doi.org/10.1109/TSG.2019.example",
+      pdf:     "assets/pdfs/big-data.pdf",
       code:    "https://github.com/example/btm-pv-estimation",
       doi:     "10.1109/TSG.2019.example",
       awards:  [],
