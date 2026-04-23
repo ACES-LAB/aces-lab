@@ -6,7 +6,7 @@
  * ============================================================
  */
 window.ACES_SPONSORS = [
-  { name: "U.S. Dept. of Energy",      logo: "assets/img/sponsors/doe.png",              url: "https://www.energy.gov"          },
+  { name: "U.S. Dept. of Energy",      logo: "assets/images/sponsors/doe.jpg",              url: "https://www.energy.gov"          },
   { name: "National Science Foundation", logo: "assets/img/sponsors/nsf.png",             url: "https://www.nsf.gov"             },
   { name: "Southern Company",           logo: "assets/img/sponsors/southern-company.png", url: "https://www.southerncompany.com" },
   { name: "Georgia Power",              logo: "assets/img/sponsors/georgia-power.png",    url: "https://www.georgiapower.com"    },

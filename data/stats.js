@@ -5,9 +5,9 @@
  * ============================================================
  */
 window.ACES_STATS = [
-  { number: "250+",   label: "Publications"     },
+  { number: "300+",   label: "Publications"     },
   { number: "7,000+", label: "Citations"        },
-  { number: "40+",    label: "PhD Alumni"       },
+  { number: "40+",    label: "Msc + PhD Alumni"       },
   { number: "15+",    label: "Years at GT"      },
-  { number: "$10M+",  label: "Research Funding" },
+  { number: "$40M+",  label: "Research Funding" },
 ];
