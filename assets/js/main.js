@@ -324,7 +324,7 @@ function renderSponsors() {
         ${s.logo ? `<img src="${s.logo}" alt="${s.name}" onerror="this.style.display='none'">` : ''}
         ${s.name}
       </a>`
-    ).join('') + `<span class="stile stile-add">+ Add Sponsor</span>`;
+    ).join('') + ``;
 }
 
 // ══════════════════════════════════════════════════════════════
