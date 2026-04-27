@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>More News — ACES Lab @ Georgia Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+
+<nav id="navbar">
+  <a class="nav-brand" href="index.html">ACES Lab</a>
+  <button id="nav-toggle">☰</button>
+  <div id="all-nav-links">
+    <span id="nav-themes" style="display:contents"></span>
+    <span class="nav-static" style="display:contents">
+      <a href="index.html#team">Members</a>
+      <a href="index.html#courses">Courses</a>
+      <a href="index.html#sponsors">Sponsors</a>
+      <a href="https://aces.ece.gatech.edu" target="_blank">ACES Site</a>
+    </span>
+    <span class="nav-icons">
+      <a href="https://scholar.google.com/citations?user=MK-6O2oAAAAJ" target="_blank" title="Google Scholar">🎓</a>
+      <a href="#" title="GitHub">⌨</a>
+      <a href="mailto:santiago.grijalva@ece.gatech.edu" title="Email">✉</a>
+    </span>
+  </div>
+</nav>
+
+<div class="rpage-wrap">
+  <div id="news-archive-page"></div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h5>ACES Lab</h5>
+        <p>Advanced Computational Electricity Systems Laboratory</p>
+        <p>School of Electrical &amp; Computer Engineering</p>
+        <p>Georgia Institute of Technology · Atlanta, GA 30332</p>
+        <a href="mailto:santiago.grijalva@ece.gatech.edu">santiago.grijalva@ece.gatech.edu</a>
+      </div>
+      <div>
+        <h5>Research Themes</h5>
+        <a href="research.html#research-ai">AI &amp; Machine Learning</a>
+        <a href="research.html#research-pv">Solar PV &amp; DERs</a>
+        <a href="research.html#research-prosumers">Prosumers &amp; Microgrids</a>
+        <a href="research.html#research-cyber">Grid Cybersecurity</a>
+        <a href="research.html#research-opt">Optimization &amp; Markets</a>
+      </div>
+      <div>
+        <h5>Links</h5>
+        <a href="https://aces.ece.gatech.edu" target="_blank">ACES Lab Website</a>
+        <a href="http://faculty.ece.gatech.edu/santiago.grijalva" target="_blank">Prof. Grijalva Profile</a>
+        <a href="https://scholar.google.com/citations?user=MK-6O2oAAAAJ" target="_blank">Google Scholar</a>
+        <a href="index.html">← Back to Home</a>
+      </div>
+    </div>
+    <hr class="fhr"/>
+    <div class="fbot">
+      <div class="fbrand">⚡ ACES Lab</div>
+      <div>© 2025 Georgia Institute of Technology · ACES Laboratory</div>
+    </div>
+  </div>
+</footer>
+
+<script src="data/stats.js"></script>
+<script src="data/news.js"></script>
+<script src="data/more-news.js"></script>
+<script src="data/team.js"></script>
+<script src="data/sponsors.js"></script>
+<script src="data/themes.js"></script>
+<script src="data/papers.js"></script>
+<script>
+// Render news archive page
+function renderNewsArchive() {
+  const container = document.getElementById('news-archive-page');
+  if (!container) return;
+
+  // Inject nav themes
+  const navEl = document.getElementById('nav-themes');
+  if (navEl && window.ACES_THEMES) {
+    navEl.innerHTML = window.ACES_THEMES.map(t =>
+      `<a href="research.html#${t.id}">${t.navLabel}</a>`).join('');
+  }
+
+  // Group news by year
+  const newsByYear = {};
+  const allNews = [...(window.ACES_NEWS || []), ...(window.ACES_MORE_NEWS || [])];
+  
+  allNews.forEach(item => {
+    const year = item.date.split(' ')[0];
+    if (!newsByYear[year]) newsByYear[year] = [];
+    newsByYear[year].push(item);
+  });
+
+  // Sort years descending
+  const years = Object.keys(newsByYear).sort((a, b) => b.localeCompare(a));
+
+  container.innerHTML = `
+    <div class="rpage-layout">
+      <aside class="rpage-sidebar">
+        <div class="rpage-sidebar-title">News Archive</div>
+        ${years.map(year => `
+          <a class="theme-nav-item" href="#year-${year}">
+            <span class="theme-dot" style="background:var(--gold2)"></span>
+            <span>${year}</span>
+            <span class="theme-count">${newsByYear[year].length}</span>
+          </a>
+        `).join('')}
+        <a class="rpage-back" href="index.html">← Back to Home</a>
+      </aside>
+      <main class="rpage-main">
+        <div class="rpage-header" style="border-left:4px solid var(--gold)">
+          <div class="rpage-emoji">📰</div>
+          <div>
+            <h1>News Archive</h1>
+            <p>Comprehensive timeline of lab achievements, publications, and milestones</p>
+            <p class="rpage-count">${allNews.length} news items</p>
+          </div>
+        </div>
+        ${years.map(year => `
+          <div id="year-${year}" class="news-year-section">
+            <h2 class="news-year-title">${year}</h2>
+            <div class="news-list">
+              ${newsByYear[year].map(n => `
+                <div class="news-row">
+                  <div class="nd">${n.date}</div>
+                  <div class="nt">${n.emoji} ${n.text}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </main>
+    </div>`;
+}
+
+// Mobile nav toggle
+document.addEventListener('DOMContentLoaded', () => {
+  renderNewsArchive();
+  
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('all-nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  }
+});
+</script>
+<style>
+.news-year-section {
+  margin-bottom: 48px;
+}
+.news-year-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gold2);
+}
+.news-list {
+  padding-left: 12px;
+}
+</style>
+</body>
+</html>
