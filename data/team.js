@@ -99,7 +99,7 @@ window.ACES_TEAM = {
     },
     {
       initials: "ZL",
-      name:     "Zurui Li",
+      name:     "Zirui Li",
       role:     "MS",
       detail:   "Power System Transient Stability & Grid Enhancement Technology ",
       url:      "https://ziruili-133.github.io/",
