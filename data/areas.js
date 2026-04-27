@@ -1,7 +1,7 @@
 /*
  * ============================================================
  *  ACES Lab — data/areas.js
- *  The 4 main research areas shown as a tile menu on the homepage.
+ *  The 5 main research areas shown as a tile menu on the homepage.
  *  Each links to area.html#area-id for a full description.
  *
  *  "themes" lists which THEME_* keys from papers.js belong here
@@ -133,6 +133,39 @@ window.ACES_AREAS = [
       "GridTrust tested in a real U.S. municipal utility substation",
       "Featured in AFCEA Signal magazine for AI-enabled grid defense",
       "Published in ACM Computing Surveys, IEEE Trans. Industry Applications",
+    ],
+  },
+  {
+    id:      "optimization-markets",
+    emoji:   "⚙️",
+    title:   "Optimization, Markets & Resilience",
+    tagline: "Power flow optimization, electricity markets, and grid resilience planning",
+    color:   "#37474F",
+    themes:  ["THEME_OPT"],
+    desc: `
+      <p>Optimal power flow (OPF) is a fundamental problem in power systems — determining how to dispatch
+      generation and control devices to meet demand while respecting physical and operational constraints.
+      ACES develops advanced optimization algorithms for both transmission and distribution networks,
+      spanning AC-OPF formulations, stochastic planning, and real-time control.</p>
+
+      <p>Our work bridges rigorous power systems engineering with energy economics and policy.
+      We design electricity market mechanisms that incentivize renewable integration, develop resilience
+      frameworks for extreme weather events, and create operating envelopes that coordinate distributed
+      energy resources at scale.</p>
+
+      <h3>Key Projects</h3>
+      <ul>
+        <li><strong>AC Optimal Power Flow:</strong> Scalable algorithms for distribution network optimization with DERs</li>
+        <li><strong>Electricity Market Design:</strong> Mechanisms for renewable integration and prosumer participation</li>
+        <li><strong>Grid Resilience Planning:</strong> Stochastic optimization under extreme weather and climate uncertainty</li>
+        <li><strong>Operating Envelopes:</strong> Dynamic constraint management for millions of distributed resources</li>
+        <li><strong>Stochastic Scheduling:</strong> Energy resource coordination under renewable variability and demand uncertainty</li>
+      </ul>
+    `,
+    highlights: [
+      "Fast OPF solvers for real-time distribution grid control",
+      "Market designs tested in utility pilot programs",
+      "Published in IEEE Trans. Power Systems, Operations Research, Energy Policy",
     ],
   },
 ];
