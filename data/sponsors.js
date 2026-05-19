@@ -25,6 +25,5 @@ window.ACES_SPONSORS = [
   { name: "Aveva",                      logo: "assets/images/sponsors/aveva.jpg",            url: "https://www.aveva.com/en/"       },
   { name: "SEL",                        logo: "assets/images/sponsors/sel.jpg",              url: "https://selinc.com/"       },
   { name: "Terna",                      logo: "assets/images/sponsors/terna.jpg",            url: "https://www.terna.it/en"       },
-  { name: "Cognos Map",                 logo: "assets/images/sponsors/cognos.jpg",           url: "#"       },
   
 ];
