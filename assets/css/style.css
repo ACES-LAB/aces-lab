@@ -176,6 +176,54 @@ img { max-width: 100%; display: block; }
 .research h2 span { margin-right: 8px; }
 .research .desc { font-size: 14px; color: var(--muted); max-width: 820px; line-height: 1.7; margin-bottom: 28px; }
 
+.group-photos-section {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 0 0 8px;
+}
+
+.group-photos-inner {
+  max-width: 1180px; /* change this to match your main page container */
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── GROUP PHOTOS ROW ────────────────────────────────── */
+.group-photos-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.group-photo {
+  flex: 1;
+  min-width: 300px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: var(--r);
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.group-photo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0,0,0,.18);
+}
+
+@media (max-width: 768px) {
+  .group-photos-inner {
+    padding: 0 20px;
+  }
+
+  .group-photo {
+    min-width: 250px;
+    height: 200px;
+  }
+}
+
 /* ── PAPER CARDS (ENHANCED WITH IMAGES) ──────────────────────── */
 .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); gap: 16px; }
 .pcard { 
